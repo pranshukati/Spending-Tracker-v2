@@ -9,7 +9,7 @@ export const usePaymentData = (monthFilter) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/payments')
+        const response = await fetch('https://spending-tracker-api-v2.onrender.com/payments')
         const data = await response.json()
         setPayments(data)
       } catch (err) {
