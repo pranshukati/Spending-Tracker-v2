@@ -85,43 +85,76 @@ const App = () => {
   }
 
   return (
-    <Box p={4} maxW="1200px" mx="auto">
-      <Flex justify="space-between" mb={8} align="center" wrap="wrap" gap={4}>
-        <Flex align="center" gap={4}>
-          <Heading size="xl" color={headingColor}>
-            Spending Tracker
-            <Tag ml={3} colorScheme="blue" variant="subtle" size="lg">
-              <Text>{monthNames[monthFilter - 1]}</Text>
-            </Tag>
-          </Heading>
-        </Flex>
-        
-        <Flex gap={3}>
-          <Select
-            value={monthFilter}
-            onChange={(e) => setMonthFilter(parseInt(e.target.value))}
-            width="150px"
-            icon={<FaCalendar />}
-            variant="filled"
-            size="sm"
+    <Box maxW="1200px" mx="auto" px={4}>
+      
+      <Box
+    position="sticky"
+    top="0"
+    zIndex="sticky"
+    bg={useColorModeValue('whiteAlpha.800', 'rgba(26, 32, 44, 0.8)')}
+    backdropFilter="blur(10px)"
+    py={3}
+    mb={6}
+  >
+    <Flex 
+      justify="space-between" 
+      align={{ base: 'flex-start', sm: 'center' }}
+      direction={{ base: 'column', sm: 'row' }}
+      gap={3}
+    >
+      <Flex align="center" gap={3} flexWrap="wrap">
+        <Heading 
+          size={{ base: 'lg', md: 'xl' }} 
+          color={headingColor}
+          display="flex"
+          alignItems="center"
+          flexWrap="wrap"
+        >
+          Spending Tracker
+          <Tag 
+            ml={{ base: 0, sm: 3 }} 
+            mt={{ base: 2, sm: 0 }}
+            colorScheme="blue" 
+            variant="subtle" 
+            size={{ base: 'md', sm: 'lg' }}
           >
-            {monthNames.map((month, index) => (
-              <option key={index} value={index + 1}>
-                <Text>{month}</Text>
-              </option>
-            ))}
-          </Select>
-          <Button 
-            onClick={toggleColorMode}
-            colorScheme="blue"
-            variant="outline"
-            leftIcon={<Icon as={colorMode === 'light' ? FaMoon : FaSun} />}
-            size="sm"
-          >
-            <Text>{colorMode === 'light' ? 'Dark' : 'Light'}</Text>
-          </Button>
-        </Flex>
+            {monthNames[monthFilter - 1]}
+          </Tag>
+        </Heading>
       </Flex>
+
+      <Flex 
+        gap={3} 
+        width={{ base: '100%', sm: 'auto' }}
+        flexDirection={{ base: 'column', sm: 'row' }}
+      >
+        <Select
+          value={monthFilter}
+          onChange={(e) => setMonthFilter(parseInt(e.target.value))}
+          width={{ base: '100%', sm: '150px' }}
+          icon={<FaCalendar />}
+          variant="filled"
+          size="sm"
+        >
+          {monthNames.map((month, index) => (
+            <option key={index} value={index + 1}>
+              {month}
+            </option>
+          ))}
+        </Select>
+        <Button 
+          onClick={toggleColorMode}
+          colorScheme="blue"
+          variant="outline"
+          leftIcon={<Icon as={colorMode === 'light' ? FaMoon : FaSun} />}
+          size="sm"
+          width={{ base: '100%', sm: 'auto' }}
+        >
+          {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+      </Flex>
+    </Flex>
+  </Box>
 
       <Tabs variant="enclosed-colored" isFitted>
         <TabList mb={4} overflowX="auto" py={2}>
