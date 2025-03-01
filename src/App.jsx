@@ -182,7 +182,7 @@ const App = () => {
               </Skeleton>
               <Skeleton isLoaded={!isLoading} borderRadius="lg">
                 <TransactionList 
-                  filteredData={payments}
+                  filteredData={filteredData}
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
                 />
